@@ -21,7 +21,7 @@ export function Header() {
             />
           </svg>
         </Button>
-        <div className="text-2xl font-semibold text-gray-900">Dashboard</div>
+        {/* <div className="text-2xl font-semibold text-gray-900">Dashboard</div> */}
         {/* Add user menu or other topbar content here */}
       </div>
     </header>
