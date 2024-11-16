@@ -12,6 +12,5 @@ export default function categoriesPage(): JSX.Element {
     <div className="size-full">
       <h1>Sucursales</h1>
     </div>
-
   );
 }

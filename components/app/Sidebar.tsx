@@ -1,8 +1,14 @@
 'use client';
 import { cn } from '@/lib/utils';
-import { Box, LayoutDashboard, ShoppingBag, Tags, TrendingUp } from 'lucide-react';
+import {
+  Box,
+  LayoutDashboard,
+  ShoppingBag,
+  Tags,
+  TrendingUp,
+} from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { type JSX, useState } from 'react';
+import React, { type JSX, useState } from 'react';
 import { Button } from '../ui/button';
 import { ScrollArea } from '@radix-ui/react-scroll-area';
 import Link from 'next/link';
@@ -27,7 +33,7 @@ export function Sidebar(): JSX.Element {
     <aside
       className={cn(
         'fixed inset-y-0 left-0 z-50 w-64 transform bg-gray-900 text-white transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0',
-        sidebarOpen ? 'translate-x-0' : '-translate-x-full',
+        sidebarOpen ? 'translate-x-0' : '-translate-x-full'
       )}
     >
       <div className="flex h-full flex-col">
@@ -72,7 +78,7 @@ export function Sidebar(): JSX.Element {
                   'group flex items-center rounded-md px-2 py-2 text-sm font-medium',
                   pathname === item.href
                     ? 'bg-gray-800 text-white'
-                    : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                    : 'text-gray-300 hover:bg-gray-700 hover:text-white'
                 )}
               >
                 <item.icon className="mr-3 h-6 w-6 flex-shrink-0" />
