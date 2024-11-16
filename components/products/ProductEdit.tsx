@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { CategorySelect } from '@/components/categories/CategorySelect';
 import { PageTitle } from '@/components/shared/component/PageTitle';
 import {

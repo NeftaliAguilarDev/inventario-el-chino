@@ -1,6 +1,7 @@
-import { Button } from "@/components/ui/button";
+import type { JSX } from 'react';
+import { Button } from '@/components/ui/button';
 
-export function Header() {
+export function Header(): JSX.Element {
   return (
     <header className="bg-white shadow-sm">
       <div className="flex h-16 items-center justify-between px-4">

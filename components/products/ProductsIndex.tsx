@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { PageTitle } from '../shared/component/PageTitle';
 import ProductListingTable from './ProductListingTable';
 

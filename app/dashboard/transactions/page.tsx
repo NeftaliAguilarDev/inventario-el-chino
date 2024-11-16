@@ -12,6 +12,5 @@ export default function productsPage(): JSX.Element {
     <div className="size-full">
       <h1>Movimientos</h1>
     </div>
-
   );
 }

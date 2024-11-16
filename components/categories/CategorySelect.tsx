@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import type { JSX } from 'react';
 import { Check, ChevronsUpDown } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
@@ -42,7 +43,7 @@ const frameworks = [
   },
 ];
 
-export function CategorySelect() {
+export function CategorySelect(): JSX.Element {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('');
 

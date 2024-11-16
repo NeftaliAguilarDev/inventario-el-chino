@@ -1,8 +1,8 @@
-"use client"
-
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+'use client';
+import type { JSX } from 'react';
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Table,
   TableBody,
@@ -10,30 +10,30 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { Edit, Trash2 } from "lucide-react"
+} from '@/components/ui/table';
+import { Edit, Trash2 } from 'lucide-react';
 
 // Mock data for categories
 const initialCategories = [
-  { id: 1, name: "Leather Jacket", price: 199.99, stock: 50 },
-  { id: 2, name: "Denim Jeans", price: 59.99, stock: 100 },
-  { id: 3, name: "Sneakers", price: 89.99, stock: 75 },
-  { id: 4, name: "T-Shirt", price: 24.99, stock: 200 },
-  { id: 5, name: "Hoodie", price: 49.99, stock: 80 },
-  { id: 6, name: "Baseball Cap", price: 19.99, stock: 150 },
-]
+  { id: 1, name: 'Leather Jacket', price: 199.99, stock: 50 },
+  { id: 2, name: 'Denim Jeans', price: 59.99, stock: 100 },
+  { id: 3, name: 'Sneakers', price: 89.99, stock: 75 },
+  { id: 4, name: 'T-Shirt', price: 24.99, stock: 200 },
+  { id: 5, name: 'Hoodie', price: 49.99, stock: 80 },
+  { id: 6, name: 'Baseball Cap', price: 19.99, stock: 150 },
+];
 
-export default function CategoriesListingTable() {
-  const [categories, setCategories] = useState(initialCategories)
-  const [searchTerm, setSearchTerm] = useState("")
+export default function CategoriesListingTable(): JSX.Element {
+  const [categories, setCategories] = useState(initialCategories);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const filteredcategories = categories.filter((product) =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  );
 
   const handleDelete = (id: number) => {
-    setCategories(categories.filter((product) => product.id !== id))
-  }
+    setCategories(categories.filter((product) => product.id !== id));
+  };
 
   return (
     <div className="w-full">
@@ -83,5 +83,5 @@ export default function CategoriesListingTable() {
         </TableBody>
       </Table>
     </div>
-  )
+  );
 }

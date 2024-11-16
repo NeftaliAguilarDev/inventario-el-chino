@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { ProductEdit } from '@/components/products/ProductEdit';
 import { Metadata } from 'next';
 

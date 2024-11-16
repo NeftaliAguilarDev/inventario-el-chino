@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { CategorySelect } from '../categories/CategorySelect';
 import { PageTitle } from '../shared/component/PageTitle';
 import { Button } from '../ui/button';
@@ -32,16 +33,12 @@ export function ProductNew(): JSX.Element {
               </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="name">Descripción</Label>
-                <Input
-                  type="text"
-                  placeholder="Descripción del producto"
-                />
+                <Input type="text" placeholder="Descripción del producto" />
               </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="name">Precio</Label>
                 <Input type="number" />
               </div>
-              
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="name">Categoria</Label>
                 <CategorySelect />

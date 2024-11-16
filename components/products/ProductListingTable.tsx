@@ -1,5 +1,5 @@
 'use client';
-
+import type { JSX } from 'react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -24,7 +24,7 @@ const initialProducts = [
   { id: 6, name: 'Baseball Cap', price: 19.99, stock: 150 },
 ];
 
-export default function ProductListingTable() {
+export default function ProductListingTable(): JSX.Element {
   const [products, setProducts] = useState(initialProducts);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -45,7 +45,7 @@ export default function ProductListingTable() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <Button asChild className='w-full md:w-auto mt-5 md:mt-0'>
+        <Button asChild className="w-full md:w-auto mt-5 md:mt-0">
           <Link href={'/dashboard/products/new'}>Agregar nuevo producto</Link>
         </Button>
       </div>
