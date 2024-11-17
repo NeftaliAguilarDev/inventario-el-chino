@@ -20,33 +20,15 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 
-const frameworks = [
-  {
-    value: 'next.js',
-    label: 'Next.js',
-  },
-  {
-    value: 'sveltekit',
-    label: 'SvelteKit',
-  },
-  {
-    value: 'nuxt.js',
-    label: 'Nuxt.js',
-  },
-  {
-    value: 'remix',
-    label: 'Remix',
-  },
-  {
-    value: 'astro',
-    label: 'Astro',
-  },
-];
-
 export function CategorySelect(): JSX.Element {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('');
-
+  const [categories] = React.useState([
+    {
+      label: 'next.js',
+      value: 'next',
+    },
+  ]);
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -54,24 +36,24 @@ export function CategorySelect(): JSX.Element {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[300px]"
+          className="w-auto pr-10 relative justify-start"
         >
           {value
-            ? frameworks.find((framework) => framework.value === value)?.label
+            ? categories.find((category) => category.value === value)?.label
             : 'Seleccionar categoría'}
-          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          <ChevronsUpDown className="h-4 w-4 absolute right-2" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[300px] p-0">
+      <PopoverContent className="w-auto pr-10 p-0">
         <Command>
-          <CommandInput placeholder="Search framework..." />
+          <CommandInput placeholder="Buscar ..." />
           <CommandList>
-            <CommandEmpty>No framework found.</CommandEmpty>
+            <CommandEmpty>No categorie found.</CommandEmpty>
             <CommandGroup>
-              {frameworks.map((framework) => (
+              {categories.map((category) => (
                 <CommandItem
-                  key={framework.value}
-                  value={framework.value}
+                  key={category.value}
+                  value={category.value}
                   onSelect={(currentValue) => {
                     setValue(currentValue === value ? '' : currentValue);
                     setOpen(false);
@@ -80,10 +62,10 @@ export function CategorySelect(): JSX.Element {
                   <Check
                     className={cn(
                       'mr-2 h-4 w-4',
-                      value === framework.value ? 'opacity-100' : 'opacity-0'
+                      value === category.value ? 'opacity-100' : 'opacity-0'
                     )}
                   />
-                  {framework.label}
+                  {category.label}
                 </CommandItem>
               ))}
             </CommandGroup>

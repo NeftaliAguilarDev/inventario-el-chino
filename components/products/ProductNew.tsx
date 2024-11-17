@@ -1,4 +1,5 @@
-import type { JSX } from 'react';
+'use client';
+import { type JSX } from 'react';
 import { CategorySelect } from '../categories/CategorySelect';
 import { PageTitle } from '../shared/component/PageTitle';
 import { Button } from '../ui/button';
@@ -11,6 +12,7 @@ import {
 } from '../ui/card';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
+import { CreateCategoryButton } from '../categories/CreateCategoryButton';
 
 export function ProductNew(): JSX.Element {
   return (
@@ -41,7 +43,10 @@ export function ProductNew(): JSX.Element {
               </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="name">Categoria</Label>
-                <CategorySelect />
+                <div className="flex items-center">
+                  <CategorySelect />
+                  <CreateCategoryButton />
+                </div>
               </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="name">Imágen del producto</Label>
