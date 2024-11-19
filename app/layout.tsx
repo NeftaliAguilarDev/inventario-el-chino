@@ -2,6 +2,7 @@ import type { JSX } from 'react';
 import type { Metadata } from 'next';
 import './globals.css';
 import React from 'react';
+import AppProvider from './providers/_AppProvider';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,7 +16,9 @@ export default function RootLayout({
 }>): JSX.Element {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <AppProvider>{children}</AppProvider>
+      </body>
     </html>
   );
 }

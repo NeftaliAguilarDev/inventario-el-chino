@@ -22,6 +22,7 @@
     "plugin:jsx-a11y/recommended",
     "plugin:security/recommended-legacy",
     "plugin:sonarjs/recommended-legacy",
+    "plugin:@tanstack/query/recommended",
     "plugin:prettier/recommended"
   ],
   "rules": {
@@ -38,5 +39,10 @@
         "alwaysTryTypes": true
       }
     }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2021": true
   }
 }
