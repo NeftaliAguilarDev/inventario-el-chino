@@ -11,30 +11,23 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Edit, Trash2 } from 'lucide-react';
+import { Edit } from 'lucide-react';
 import Link from 'next/link';
-
-// Mock data for products
-const initialProducts = [
-  { id: 1, name: 'Leather Jacket', price: 199.99, stock: 50 },
-  { id: 2, name: 'Denim Jeans', price: 59.99, stock: 100 },
-  { id: 3, name: 'Sneakers', price: 89.99, stock: 75 },
-  { id: 4, name: 'T-Shirt', price: 24.99, stock: 200 },
-  { id: 5, name: 'Hoodie', price: 49.99, stock: 80 },
-  { id: 6, name: 'Baseball Cap', price: 19.99, stock: 150 },
-];
+import { useQuery } from '@tanstack/react-query';
+import { getProducts } from '@/lib/actions/products';
+import { Product } from '@prisma/client';
 
 export default function ProductListingTable(): JSX.Element {
-  const [products, setProducts] = useState(initialProducts);
   const [searchTerm, setSearchTerm] = useState('');
-
-  const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  const handleDelete = (id: number) => {
-    setProducts(products.filter((product) => product.id !== id));
-  };
+  const [products, setProducts] = useState<Product[]>([]);
+  const { isPending } = useQuery({
+    queryKey: ['products'],
+    queryFn: async () => {
+      const response = await getProducts();
+      setProducts(response);
+      return response;
+    },
+  });
 
   return (
     <div className="w-full">
@@ -59,27 +52,28 @@ export default function ProductListingTable(): JSX.Element {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {filteredProducts.map((product) => (
-            <TableRow key={product.id}>
-              <TableCell>{product.name}</TableCell>
-              <TableCell>${product.price.toFixed(2)}</TableCell>
-              <TableCell>{product.stock}</TableCell>
-              <TableCell className="text-right">
-                <Button variant="ghost" size="icon" className="mr-2">
-                  <Edit className="h-4 w-4" />
-                  <span className="sr-only">Edit</span>
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => handleDelete(product.id)}
-                >
-                  <Trash2 className="h-4 w-4" />
-                  <span className="sr-only">Delete</span>
-                </Button>
-              </TableCell>
+          {isPending && (
+            <TableRow>
+              <TableCell>Cargando productos... </TableCell>
             </TableRow>
-          ))}
+          )}
+          {products.length > 0 &&
+            products?.map((product) => (
+              <TableRow key={product.id}>
+                <TableCell>{product.name}</TableCell>
+                <TableCell>${product.price.toFixed(2)}</TableCell>
+                <TableCell>{product.stock}</TableCell>
+                <TableCell className="text-right">
+                  <Button asChild variant="ghost" size="icon" className="mr-2">
+                    <Link href={`/dashboard/products/${product.id}`}>
+                      <Edit className="h-4 w-4" />
+                      <span>Editar</span>
+                      <span className="sr-only">Editar</span>
+                    </Link>
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </div>

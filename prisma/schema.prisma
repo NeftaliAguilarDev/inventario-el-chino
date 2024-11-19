@@ -18,18 +18,20 @@ model Product {
   name        String
   price       Float
   description String
-  stock       Int
+  stock       Int       @default(0)
   Category    Category? @relation(fields: [categoryId], references: [id])
   categoryId  String?
   is_active   Boolean   @default(true)
-  timestamps  DateTime  @default(now())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
   deletedAt   DateTime?
 }
 
 model Category {
-  id       String    @id @default(cuid())
-  name     String
-  is_active   Boolean   @default(true)
-  products Product[]
-  timestamps  DateTime  @default(now())
+  id        String    @id @default(cuid())
+  name      String
+  is_active Boolean   @default(true)
+  products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
