@@ -1,11 +1,22 @@
 import type { JSX } from 'react';
 import { ProductEdit } from '@/components/products/ProductEdit';
 import { Metadata } from 'next';
+import { getProductById } from '@/lib/actions/products';
 
 export const metadata: Metadata = {
   title: 'Editar producto producto',
 };
 
-export default function ProductEditPage(): JSX.Element {
-  return <ProductEdit />;
+interface ProductEditPageProps {
+  readonly params: {
+    readonly id: string;
+  };
+}
+
+export default async function ProductEditPage({
+  params,
+}: ProductEditPageProps): Promise<JSX.Element> {
+  const { id: productId } = await params;
+  const productData = await getProductById(productId);
+  return <ProductEdit productData={productData} />;
 }
