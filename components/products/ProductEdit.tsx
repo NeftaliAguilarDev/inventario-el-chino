@@ -1,5 +1,5 @@
+'use client';
 import type { JSX } from 'react';
-import { CategorySelect } from '@/components/categories/CategorySelect';
 import { PageTitle } from '@/components/shared/component/PageTitle';
 import {
   Button,
@@ -11,8 +11,21 @@ import {
   Input,
   Label,
 } from '@/components/ui';
+import { Product } from '@prisma/client';
+import { useForm } from 'react-hook-form';
 
-export function ProductEdit(): JSX.Element {
+interface ProductEditProps {
+  readonly productData: Product;
+}
+
+type Inputs = {
+  name: string;
+  description: string;
+  price: number;
+};
+
+export function ProductEdit({ productData }: ProductEditProps): JSX.Element {
+  const { register } = useForm<Inputs>();
   return (
     <div className="size-full">
       <PageTitle title="Editar producto" />
@@ -26,23 +39,29 @@ export function ProductEdit(): JSX.Element {
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="name">Nombre</Label>
                 <Input
-                  type="text"
-                  id="name"
-                  placeholder="Nombre del producto"
+                  defaultValue={productData.name}
+                  {...(register('name'), { required: true })}
                 />
               </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="name">Descripción</Label>
-                <Input type="text" placeholder="Descripción del producto" />
+                <Input
+                  defaultValue={productData.description}
+                  {...(register('description'), { required: false })}
+                />
               </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="name">Precio</Label>
-                <Input type="number" />
+                <Input
+                  type="number"
+                  defaultValue={productData.price}
+                  {...(register('price'), { required: true })}
+                />
               </div>
 
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="name">Categoria</Label>
-                <CategorySelect />
+                {/* <CategorySelect /> */}
               </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="name">Imágen del producto</Label>

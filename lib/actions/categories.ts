@@ -1,12 +1,8 @@
 "use server";
+import { Category } from "@prisma/client";
+import prisma from "../prisma";
 
-export interface Category {
-  id: number;
-  value: string;
-}
-export async function getCategories(): Promise<Category> {
-  return Promise.resolve({
-    id: 1,
-    value: "next.js",
-  });
+export async function getCategories(): Promise<Category[]> {
+  const categories = await prisma.category.findMany();
+  return categories;
 }

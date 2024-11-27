@@ -17,8 +17,12 @@ import { createProduct } from '@/lib/actions/products';
 import { useMutation } from '@tanstack/react-query';
 import { ProductCreateInput } from '@/lib/schemas';
 import { useRouter } from 'next/navigation';
+import { Category } from '@prisma/client';
 
-export function ProductNew(): JSX.Element {
+interface ProductNewProps {
+  readonly categories: Category[];
+}
+export function ProductNew({ categories }: ProductNewProps): JSX.Element {
   const router = useRouter();
   const { mutate, isPending } = useMutation({
     mutationKey: ['createProduct'],
@@ -77,7 +81,7 @@ export function ProductNew(): JSX.Element {
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="name">Categoria</Label>
                 <div className="flex items-center">
-                  <CategorySelect />
+                  <CategorySelect categories={categories} />
                   <CreateCategoryButton />
                 </div>
               </div>

@@ -23,3 +23,12 @@ export const createProduct = async (
   });
   return newProduct;
 };
+
+export const getProductById = async (id: string): Promise<Product | null> => {
+  const product = await prisma.product.findUnique({
+    where: {
+      id,
+    },
+  });
+  return product;
+};
