@@ -1,6 +1,5 @@
 'use client';
 import type { JSX } from 'react';
-import { CategorySelect } from '@/components/categories/CategorySelect';
 import { PageTitle } from '@/components/shared/component/PageTitle';
 import {
   Button,
@@ -62,7 +61,7 @@ export function ProductEdit({ productData }: ProductEditProps): JSX.Element {
 
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="name">Categoria</Label>
-                <CategorySelect />
+                {/* <CategorySelect /> */}
               </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="name">Imágen del producto</Label>

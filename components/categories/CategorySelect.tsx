@@ -49,24 +49,25 @@ export function CategorySelect({
           <CommandList>
             <CommandEmpty>Categoria no encontrada</CommandEmpty>
             <CommandGroup>
-              {categories.map((category) => (
-                <CommandItem
-                  key={category.name}
-                  value={category.name}
-                  onSelect={(currentValue) => {
-                    setValue(currentValue === value ? '' : currentValue);
-                    setOpen(false);
-                  }}
-                >
-                  <Check
-                    className={cn(
-                      'mr-2 h-4 w-4',
-                      value === category.name ? 'opacity-100' : 'opacity-0'
-                    )}
-                  />
-                  {category.name}
-                </CommandItem>
-              ))}
+              {categories &&
+                categories.map((category) => (
+                  <CommandItem
+                    key={category.name}
+                    value={category.name}
+                    onSelect={(currentValue) => {
+                      setValue(currentValue === value ? '' : currentValue);
+                      setOpen(false);
+                    }}
+                  >
+                    <Check
+                      className={cn(
+                        'mr-2 h-4 w-4',
+                        value === category.name ? 'opacity-100' : 'opacity-0'
+                      )}
+                    />
+                    {category.name}
+                  </CommandItem>
+                ))}
             </CommandGroup>
           </CommandList>
         </Command>
